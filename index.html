@@ -13,9 +13,9 @@
 </head>
 
 <body>
-    <div class="container">
+    <div id="app" class="container">
         <div class="row p-5">
-            <h1 class="mx-auto">Book your lesson</h1>
+            <h1 v-text="sitename" class="mx-auto"></h1>
         </div>
 
         <div class="row">
@@ -66,12 +66,12 @@
             <div class="col-md-4">
                 <main>
                     <figure>
-                        <img class="img-thumbnail float-right" width="200" src="download.jpg">
+                        <img v-bind:src="lesson.image" class="img-thumbnail float-right" width="200">
                     </figure>
-                    <p class="text-info">Subject: <span class="text-dark">Math</span></p>
-                    <p class="text-info">Location: <span class="text-dark">London</span></p>
-                    <p class="text-info">Price: <span class="text-dark">30</span></p>
-                    <p class="text-info">Spaces: <span class="text-dark">10</span></p>
+                    <p class="text-info">Subject: <span class="text-dark" v-text="lesson.subject"></span></p>
+                    <p class="text-info">Location: <span class="text-dark" v-text="lesson.location"></span></p>
+                    <p class="text-info">Price: <span class="text-dark" v-text="lesson.price"></span></p>
+                    <p class="text-info">Spaces: <span class="text-dark" v-text="lesson.spaces"></span></p>
                     <button type="button" class="btn btn-success"> Add to cart</button>
                     <!-- This button will be displayed otherwise -->
                     <button type="button" class="btn btn-danger" disabled=' disabled'> Add to cart</button>
@@ -94,7 +94,17 @@
 
         </div>
     </div>
-
+    <script src="/lesson.js"></script>
+    <script>
+        var webstore = new Vue({
+            el: '#app',
+            data: {
+                sitename: 'Lesson Booking Service',
+                lesson: lesson
+            }
+        });
+    </script>
 </body>
+
 
 </html>
