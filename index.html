@@ -65,25 +65,28 @@
 
         <div class="row justify-content-center mt-5">
             <div v-for="lesson in lesson">
-                <div class="  mt-5 col-md-11">
+                <div class="mt-5 col-lg-11">
                     <main>
                         <figure>
-                            <img v-bind:src="lesson.image" class="img-thumbnail float-right" width="200">
+                            <img class="img-thumbnail" width="200" v-bind:src="lesson.image">
                         </figure>
                         <p class="text-info">Subject: <span class="text-dark" v-text="lesson.subject"></span></p>
                         <p class="text-info">Location: <span class="text-dark" v-text="lesson.location"></span></p>
                         <p class="text-info">Price: <span class="text-dark" v-text="lesson.price"></span></p>
-                        <p class="text-info">Spaces: <span class="text-dark" v-text="lesson.spaces"></span></p>
-                        <button type="button" class="btn btn-success"> Add to cart</button>
+                        <p class="text-info">Spaces: <span
+                                class="text-dark">{{lesson.spaces - cartCount(lesson.id)}}</span></p>
+                        <button v-on:click="addToCart(lesson)" v-if="canAddToCart(lesson)" class="btn btn-success"> Add
+                            to cart</button>
                         <!-- This button will be displayed otherwise -->
-                        <button type="button" class="btn btn-danger" disabled=' disabled'> Add to cart</button>
-                        <span class="text-danger">
+                        <button v-else type="button" class="btn btn-danger" disabled=' disabled'> Add to cart</button>
+                        <br>
+                        <span v-if='lesson.spaces === cartCount(lesson.id)' class="text-danger">
                             Sold Out
                         </span>
-                        <span class="text-warning">
-                            Only left!!
+                        <span v-else-if="lesson.spaces - cartCount(lesson.id) < 5" class="text-warning">
+                            Only {{lesson.spaces - cartCount(lesson.id)}} left!!
                         </span>
-                        <span class="text-success">
+                        <span v-else class="text-success">
                             Buy Now
                         </span>
                         <div>
@@ -103,6 +106,51 @@
             data: {
                 sitename: 'Lesson Booking Service',
                 lesson: lesson
+                ,
+                cart: [],
+                showProduct: true,
+
+            },
+            methods: {
+
+                addToCart(lesson) {
+                    this.cart.push(lesson.id);
+                },
+                showCheckout() {
+                    this.showProduct = this.showProduct ? false : true;
+                },
+                submitForm() {
+                    alert('Order submitted!')
+                },
+
+                canAddToCart(lesson) {
+                    return lesson.spaces > this.cartCount(lesson.id);
+                },
+                cartCount(id) {
+                    let count = 0;
+                    for (let i = 0; i < this.cart.length; i++) {
+                        if (this.cart[i] === id) {
+                            count++;
+                        }
+                    } return count;
+                },
+
+            },
+            computed: {
+                cartItemCount: function () {
+                    return this.cart.length;
+                },
+                sortedProducts() {
+                    let productsArray = this.product.slice(0);
+                    function compare(a, b) {
+                        if (a.price > b.price)
+                            return 1;
+                        if (a.price < b.price)
+                            return -1;
+                        return 0;
+                    }
+                    return productsArray.sort(compare);
+                }
             }
         });
     </script>
