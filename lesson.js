@@ -6,7 +6,8 @@ let lesson = [
                     price: 40,
                     image: "download.jpg",
                     spaces: 10,
-                    rating: 3
+        rating: 3,
+                    
 },
 {
          id: 102,
@@ -15,7 +16,8 @@ let lesson = [
                     price: 30,
                     image: "download.jpg",
                     spaces: 8,
-                    rating: 4
+                    rating: 4,
+                    
 },
 {
          id: 103,
@@ -24,7 +26,8 @@ let lesson = [
                     price: 50,
                     image: "download.jpg",
                     spaces: 5,
-                    rating: 4
+                    rating: 4,
+                    
 },
 {
          id: 104,
@@ -33,7 +36,8 @@ let lesson = [
                     price: 45,
                     image: "download.jpg",
                     spaces: 12,
-                    rating: 2
+                    rating: 2,
+                    
 },
 {
          id: 105,
@@ -42,7 +46,8 @@ let lesson = [
                     price: 42,
                     image: "download.jpg",
                     spaces: 10,
-                    rating: 3
+                    rating: 3,
+                    
 },
 {
          id: 106,
@@ -51,7 +56,8 @@ let lesson = [
                     price: 40,
                     image: "download.jpg",
                     spaces: 15,
-                    rating: 3
+                    rating: 3,
+                    
 },
 {
          id: 107,
@@ -60,7 +66,8 @@ let lesson = [
                     price: 60,
                     image: "download.jpg",
                     spaces: 10,
-                    rating: 1
+                    rating: 1,
+                    
 },
 {
          id: 108,
@@ -69,7 +76,8 @@ let lesson = [
                     price: 45,
                     image: "download.jpg",
                     spaces: 10,
-                    rating: 5
+                    rating: 5,
+                    
 },
 {
          id: 109,
@@ -78,7 +86,8 @@ let lesson = [
                     price: 40,
                     image: "download.jpg",
                     spaces: 10,
-                    rating: 1
+                    rating: 1,
+                    
 },
 {
          id: 110,
@@ -87,7 +96,8 @@ let lesson = [
                     price: 10,
                     image: "download.jpg",
                     spaces: 20,
-                    rating: 4
+                    rating: 4,
+                    
 }
 ]
     

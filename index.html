@@ -79,7 +79,7 @@
                                     <p class="text-info">Price: <span class="text-dark" v-text="lesson.price"></span>
                                     </p>
                                     <p class="text-info">Spaces: <span
-                                            class="text-dark">{{lesson.spaces - cartCount(lesson.id)}}</span></p>
+                                            class="text-dark">{{lesson.spaces - cartCount(lesson)}}</span></p>
                                     <button v-on:click="addToCart(lesson)" v-if="canAddToCart(lesson)"
                                         class=" btn btn-success"> Add
                                         to cart</button>
@@ -88,11 +88,11 @@
                                         Add to
                                         cart</button>
 
-                                    <span v-if='lesson.spaces === cartCount(lesson.id)' class=" text-danger">
+                                    <span v-if='lesson.spaces === cartCount(lesson)' class=" text-danger">
                                         Sold Out
                                     </span>
-                                    <span v-else-if="lesson.spaces - cartCount(lesson.id) < 5" class=" text-warning">
-                                        Only {{lesson.spaces - cartCount(lesson.id)}} left!!
+                                    <span v-else-if="lesson.spaces - cartCount(lesson) < 5" class=" text-warning">
+                                        Only {{lesson.spaces - cartCount(lesson)}} left!!
                                     </span>
                                     <span v-else class=" text-success">
                                         Buy Now
@@ -112,10 +112,37 @@
         </div>
         <br><br><br>
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div v-if="cartItemCount > 0">
                     <h2 class="text-center">Shopping Cart</h2>
-                    
+
+                    <div class="row">
+                        <div class="col-md-8 offset-2">
+                            <table class="table mt-5">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Class</th>
+                                        <th scope="col">Location</th>
+                                        <th scope="col">Price</th>
+                                    </tr>
+                                </thead>
+                                <div>
+                                    <tr v-for="lesson in cart">
+                                        <td>
+                                            <p class="text-dark"> {{lesson.subject}}
+                                                Class
+                                            </p>
+                                        </td>
+                                        <td>{{lesson.location}}</td>
+                                        <td>{{lesson.price}}</td>
+                                        <td><button v-on:click="removeCart(lesson)"
+                                                class="btn btn-danger">Remove</button></td>
+                                    </tr>
+
+                                </div>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <div v-else>
                     <h2 class="text-center">Cart Empty</h2>
@@ -134,12 +161,16 @@
                 ,
                 cart: [],
                 showProduct: true,
+                quantity: 0
 
             },
             methods: {
 
                 addToCart(lesson) {
-                    this.cart.push(lesson.id);
+                    this.cart.push(lesson);
+                },
+                removeCart(lesson) {
+                    this.cart.splice(this.cart.indexOf(lesson), 1)
                 },
                 showCheckout() {
                     this.showProduct = this.showProduct ? false : true;
@@ -149,7 +180,7 @@
                 },
 
                 canAddToCart(lesson) {
-                    return lesson.spaces > this.cartCount(lesson.id);
+                    return lesson.spaces > this.cartCount(lesson);
                 },
                 cartCount(id) {
                     let count = 0;
