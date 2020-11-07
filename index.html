@@ -18,7 +18,7 @@
             <h1 v-text="sitename" class="mx-auto"></h1>
         </div>
 
-        <div class="row">
+        <div class=" justify-content-center row">
             <div class="col-md-4">
                 <p class="font-weight-bold">Category</p>
                 <div class="form-check form-check-inline ">
@@ -62,36 +62,38 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-5">
-            <div class="col-md-4">
-                <main>
-                    <figure>
-                        <img v-bind:src="lesson.image" class="img-thumbnail float-right" width="200">
-                    </figure>
-                    <p class="text-info">Subject: <span class="text-dark" v-text="lesson.subject"></span></p>
-                    <p class="text-info">Location: <span class="text-dark" v-text="lesson.location"></span></p>
-                    <p class="text-info">Price: <span class="text-dark" v-text="lesson.price"></span></p>
-                    <p class="text-info">Spaces: <span class="text-dark" v-text="lesson.spaces"></span></p>
-                    <button type="button" class="btn btn-success"> Add to cart</button>
-                    <!-- This button will be displayed otherwise -->
-                    <button type="button" class="btn btn-danger" disabled=' disabled'> Add to cart</button>
-                    <span class="text-danger">
-                        Sold Out
-                    </span>
-                    <span class="text-warning">
-                        Only left!!
-                    </span>
-                    <span class="text-success">
-                        Buy Now
-                    </span>
-                    <div>
-                        <span><i class="fas fa-star"></i> </span>
-                        <span><i class="far fa-star"></i></span>
-                    </div>
-                </main>
 
+        <div class="row justify-content-center mt-5">
+            <div v-for="lesson in lesson">
+                <div class="  mt-5 col-md-11">
+                    <main>
+                        <figure>
+                            <img v-bind:src="lesson.image" class="img-thumbnail float-right" width="200">
+                        </figure>
+                        <p class="text-info">Subject: <span class="text-dark" v-text="lesson.subject"></span></p>
+                        <p class="text-info">Location: <span class="text-dark" v-text="lesson.location"></span></p>
+                        <p class="text-info">Price: <span class="text-dark" v-text="lesson.price"></span></p>
+                        <p class="text-info">Spaces: <span class="text-dark" v-text="lesson.spaces"></span></p>
+                        <button type="button" class="btn btn-success"> Add to cart</button>
+                        <!-- This button will be displayed otherwise -->
+                        <button type="button" class="btn btn-danger" disabled=' disabled'> Add to cart</button>
+                        <span class="text-danger">
+                            Sold Out
+                        </span>
+                        <span class="text-warning">
+                            Only left!!
+                        </span>
+                        <span class="text-success">
+                            Buy Now
+                        </span>
+                        <div>
+                            <span><i class="fas fa-star"></i> </span>
+                            <span><i class="far fa-star"></i></span>
+                        </div>
+                    </main>
+
+                </div>
             </div>
-
         </div>
     </div>
     <script src="/lesson.js"></script>
