@@ -6,8 +6,8 @@ let lesson = [
                     price: 30,
                     image: "math.jpg",
                     spaces: 5,
-        rating: 3,
-                    
+                    rating: 3,
+                    quantity: 5
 },
 {
          id: 102,
@@ -17,7 +17,7 @@ let lesson = [
                     image: "english.jpg",
                     spaces: 5,
                     rating: 4,
-                    
+                    quantity: 5
 },
 {
          id: 103,
@@ -27,7 +27,7 @@ let lesson = [
                     image: "science.jpg",
                     spaces: 5,
                     rating: 4,
-                    
+                    quantity: 5
 },
 {
          id: 104,
@@ -37,7 +37,7 @@ let lesson = [
                     image: "it.jpg",
                     spaces: 5,
                     rating: 5,
-                    
+                    quantity: 5
 },
 {
          id: 105,
@@ -47,7 +47,7 @@ let lesson = [
                     image: "chemistry.jpg",
                     spaces: 5,
                     rating: 3,
-                    
+                    quantity: 5
 },
 {
          id: 106,
@@ -57,7 +57,7 @@ let lesson = [
                     image: "math.jpg",
                     spaces: 5,
                     rating: 2,
-                    
+                    quantity: 5
 },
 {
          id: 107,
@@ -67,7 +67,7 @@ let lesson = [
                     image: "pyscology.jpg",
                     spaces: 5,
                     rating: 1,
-                    
+                    quantity: 5
 },
 {
          id: 108,
@@ -77,7 +77,7 @@ let lesson = [
                     image: "physics.jpg",
                     spaces: 5,
                     rating: 5,
-                    
+                    quantity: 5
 },
 {
          id: 109,
@@ -87,7 +87,7 @@ let lesson = [
                     image: "history.jpg",
                     spaces: 5,
                     rating: 2,
-                    
+                    quantity: 5
 },
 {
          id: 110,
@@ -97,7 +97,7 @@ let lesson = [
                     image: "art.jpg",
                     spaces: 5,
                     rating: 4,
-                    
+                    quantity: 5
 },
 {
          id: 111,
@@ -107,7 +107,7 @@ let lesson = [
                     image: "accounts.jpg",
                     spaces: 5,
                     rating: 3,
-                    
+                    quantity: 5
 },
 {
          id: 112,
@@ -117,7 +117,7 @@ let lesson = [
                     image: "programming.jpg",
                     spaces: 5,
                     rating: 5,
-                    
+                    quantity: 5
 }
 ]
     

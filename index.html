@@ -241,8 +241,8 @@
 
             },
             methods: {
-
                 addToCart(lesson) {
+                    lesson.quantity -= 1
                     this.cart.push(lesson);
                 },
                 removeCart(lesson) {
@@ -405,10 +405,10 @@
                         if (this.sortOrder === "asc") {
                             document.getElementById("errorSort").innerHTML = "";
                             return this.lesson.sort((a, b) => {
-                                if ((a.spaces) > (b.spaces)) {
+                                if ((a.quantity) > (b.quantity)) {
                                     return 1;
                                 }
-                                if ((a.spaces) < (b.spaces)) {
+                                if ((a.quantity) < (b.quantity)) {
                                     return -1;
                                     return 0;
 
@@ -417,11 +417,11 @@
                         } else if (this.sortOrder === "dsc") {
                             document.getElementById("errorSort").innerHTML = "";
                             return this.lesson.sort((a, b) => {
-                                if (a.spaces > b.spaces) {
+                                if (a.quantity > b.quantity) {
                                     return -1;
                                     return 0;
                                 }
-                                if ((a.spaces) < (b.spaces)) {
+                                if ((a.quantity) < (b.quantity)) {
                                     return 1;
                                 }
                             })
