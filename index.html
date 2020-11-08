@@ -22,44 +22,51 @@
                 <div class="col-md-2">
                     <p class="font-weight-bold">Category</p>
                     <div class="form-check  ">
-                        <input class="form-check-input " type="radio" value="option1" name="categoryRadio" checked>
-                        <label class="form-check-label">
+                        <input class="form-check-input " type="radio" value="option1" name="categoryRadio"
+                            id="subjectRadio" @click="sort('subject')">
+                        <label class="form-check-label" for="subjectRadio">
                             Subject
                         </label>
                     </div>
                     <div class="form-check  ">
-                        <input class="form-check-input" type="radio" value="option1" name="categoryRadio">
-                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" value="option1" name="categoryRadio"
+                            id="locationRadio" @click="sort('location')">
+                        <label class="form-check-label" for="locationRadio">
                             Location
                         </label>
                     </div>
                     <div class="form-check  mt-1">
-                        <input class="form-check-input" type="radio" value="option1" name="categoryRadio">
-                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" value="option1" name="categoryRadio"
+                            id="priceRadio" @click="sort('price')">
+                        <label class="form-check-label" for="priceRadio">
                             Price
                         </label>
                     </div>
                     <div class="form-check  mt-1">
                         <input class="form-check-input" type="radio" value="option1" name="categoryRadio"
-                            @click="sort('spaces')">
-                        <label class="form-check-label">
+                            id="spacesRadio" @click="sort('spaces')">
+                        <label class="form-check-label" for="spacesRadio">
                             Spaces
                         </label>
                     </div>
 
                     <p class=" font-weight-bold mt-4">Order By</p>
                     <div class="form-check  ">
-                        <input class="form-check-input" type="radio" value="option1" name="orderRadio">
-                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" value="option1" name="orderRadio" id="ascRadio"
+                            @click="sortDirection('asc')">
+                        <label class="form-check-label" for="ascRadio">
                             Ascending
                         </label>
                     </div>
                     <div class="form-check ">
-                        <input class="form-check-input" type="radio" value="option1" name="orderRadio" checked>
-                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" value="option1" name="orderRadio" id="dscRadio"
+                            @click="sortDirection('dsc')">
+                        <label class="form-check-label" for="dscRadio">
                             Descending
                         </label>
                     </div>
+                    <br>
+                    <p class=" text-danger" id="errorSort"></p>
                 </div>
                 <div class="col-md-10">
 
@@ -229,6 +236,8 @@
                 sortType: '',
                 cart: [],
                 showProduct: true,
+                sortOrder: '',
+
 
             },
             methods: {
@@ -279,6 +288,9 @@
                 },
                 sort(type) {
                     this.sortType = type;
+                },
+                sortDirection(type) {
+                    this.sortOrder = type;
                 }
 
             },
@@ -295,18 +307,133 @@
                     return total;
                 },
                 sorted() {
+                    if (this.sortType === "") {
+                        return this.lesson
+                    }
+                    if (this.sortType === "subject") {
+                        if (this.sortOrder === "asc") {
+                            document.getElementById("errorSort").innerHTML = "";
+                            return this.lesson.sort((a, b) => {
+                                if (a.subject > b.subject) {
+                                    return 1;
+                                }
+                                if (a.subject < b.subject) {
+                                    return -1;
+                                    return 0;
+
+                                }
+                            })
+                        } else if (this.sortOrder === "dsc") {
+                            document.getElementById("errorSort").innerHTML = "";
+                            return this.lesson.sort((a, b) => {
+                                if (a.subject > b.subject) {
+                                    return -1;
+                                    return 0;
+                                }
+                                if (a.subject < b.subject) {
+                                    return 1;
+                                }
+                            })
+                        } else {
+                            document.getElementById("errorSort").innerHTML = "Select sort order";
+                            return this.lesson
+
+
+                        }
+                    }
+                    if (this.sortType === "location") {
+                        if (this.sortOrder === "asc") {
+                            document.getElementById("errorSort").innerHTML = "";
+                            return this.lesson.sort((a, b) => {
+                                if (a.location > b.location) {
+                                    return 1;
+                                }
+                                if (a.location < b.location) {
+                                    return -1;
+                                    return 0;
+
+                                }
+                            })
+                        } else if (this.sortOrder === "dsc") {
+                            document.getElementById("errorSort").innerHTML = "";
+                            return this.lesson.sort((a, b) => {
+                                if (a.location > b.location) {
+                                    return -1;
+                                    return 0;
+                                }
+                                if (a.location < b.location) {
+                                    return 1;
+                                }
+                            })
+                        } else {
+                            document.getElementById("errorSort").innerHTML = "Select sort order";
+                            return this.lesson
+
+
+                        }
+                    }
+                    if (this.sortType === "price") {
+                        if (this.sortOrder === "asc") {
+                            document.getElementById("errorSort").innerHTML = "";
+                            return this.lesson.sort((a, b) => {
+                                if (a.prices > b.price) {
+                                    return 1;
+                                }
+                                if (a.price < b.price) {
+                                    return -1;
+                                    return 0;
+
+                                }
+                            })
+                        } else if (this.sortOrder === "dsc") {
+                            document.getElementById("errorSort").innerHTML = "";
+                            return this.lesson.sort((a, b) => {
+                                if (a.price > b.price) {
+                                    return -1;
+                                    return 0;
+                                }
+                                if (a.price < b.price) {
+                                    return 1;
+                                }
+                            })
+                        } else {
+                            document.getElementById("errorSort").innerHTML = "Select sort order";
+                            return this.lesson
+                        }
+                    }
                     if (this.sortType === "spaces") {
-                        return this.lesson.sort((a, b) => {
-                            if (a.subject > b.subject)
-                                return 1;
-                            if (a.subject < b.subject)
-                                return -1;
-                            return 0;
-                        })
+                        if (this.sortOrder === "asc") {
+                            document.getElementById("errorSort").innerHTML = "";
+                            return this.lesson.sort((a, b) => {
+                                if ((a.spaces) > (b.spaces)) {
+                                    return 1;
+                                }
+                                if ((a.spaces) < (b.spaces)) {
+                                    return -1;
+                                    return 0;
+
+                                }
+                            })
+                        } else if (this.sortOrder === "dsc") {
+                            document.getElementById("errorSort").innerHTML = "";
+                            return this.lesson.sort((a, b) => {
+                                if (a.spaces > b.spaces) {
+                                    return -1;
+                                    return 0;
+                                }
+                                if ((a.spaces) < (b.spaces)) {
+                                    return 1;
+                                }
+                            })
+                        } else {
+                            document.getElementById("errorSort").innerHTML = "Select sort order";
+                            return this.lesson
+
+
+                        }
                     }
                 }
             }
-
         });
     </script>
 </body>
