@@ -4,7 +4,7 @@ let lesson = [
                     subject: 'Math',
                     location: 'London',
                     price: 30,
-                    image: "math.jpg",
+                    image: "images/math.jpg",
                     spaces: 5,
                     rating: 3,
                     quantity: 5
@@ -14,7 +14,7 @@ let lesson = [
                     subject: 'English',
                     location: 'Glasgow',
                     price: 30,
-                    image: "english.jpg",
+                    image: "images/english.jpg",
                     spaces: 5,
                     rating: 4,
                     quantity: 5
@@ -24,7 +24,7 @@ let lesson = [
                     subject: 'Science',
                     location: 'Edinburgh',
                     price: 50,
-                    image: "science.jpg",
+                    image: "images/science.jpg",
                     spaces: 5,
                     rating: 4,
                     quantity: 5
@@ -34,7 +34,7 @@ let lesson = [
                     subject: 'IT',
                     location: 'Bath',
                     price: 45,
-                    image: "it.jpg",
+                    image: "images/it.jpg",
                     spaces: 5,
                     rating: 5,
                     quantity: 5
@@ -44,7 +44,7 @@ let lesson = [
                     subject: 'Chemistry',
                     location: 'Belfast',
                     price: 42,
-                    image: "chemistry.jpg",
+                    image: "images/chemistry.jpg",
                     spaces: 5,
                     rating: 3,
                     quantity: 5
@@ -54,7 +54,7 @@ let lesson = [
                     subject: 'Math',
                     location: 'Bath',
                     price: 40,
-                    image: "math.jpg",
+                    image: "images/math.jpg",
                     spaces: 5,
                     rating: 2,
                     quantity: 5
@@ -64,7 +64,7 @@ let lesson = [
                     subject: 'Pyscology',
                     location: 'Liverpool',
                     price: 60,
-                    image: "pyscology.jpg",
+                    image: "images/pyscology.jpg",
                     spaces: 5,
                     rating: 1,
                     quantity: 5
@@ -74,7 +74,7 @@ let lesson = [
                     subject: 'Physics',
                     location: 'Cornwall',
                     price: 45,
-                    image: "physics.jpg",
+                    image: "images/physics.jpg",
                     spaces: 5,
                     rating: 5,
                     quantity: 5
@@ -84,7 +84,7 @@ let lesson = [
                     subject: 'History',
                     location: 'York',
                     price: 40,
-                    image: "history.jpg",
+                    image: "images/history.jpg",
                     spaces: 5,
                     rating: 2,
                     quantity: 5
@@ -94,7 +94,7 @@ let lesson = [
                     subject: 'Art',
                     location: 'Oxford',
                     price: 10,
-                    image: "art.jpg",
+                    image: "images/art.jpg",
                     spaces: 5,
                     rating: 4,
                     quantity: 5
@@ -104,7 +104,7 @@ let lesson = [
                     subject: 'Accounts',
                     location: 'Oxford',
                     price: 80,
-                    image: "accounts.jpg",
+                    image: "images/accounts.jpg",
                     spaces: 5,
                     rating: 3,
                     quantity: 5
@@ -114,7 +114,7 @@ let lesson = [
                     subject: 'Programming',
                     location: 'Oxford',
                     price: 10,
-                    image: "programming.jpg",
+                    image: "images/programming.jpg",
                     spaces: 5,
                     rating: 5,
                     quantity: 5
