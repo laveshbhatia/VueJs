@@ -3,6 +3,7 @@ The following website is a site made with VueJs. It allows parents to book class
 
 In order to run it, download the code and run the index.html file.
 
+View Report.pdf for more Information
 
 HomePage Screenshot
 ![Homepage](screenshot/Homepage.PNG)
