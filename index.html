@@ -76,8 +76,8 @@
                                         <p class="text-info">Location: <span class="text-dark"
                                                 v-text="lesson.location"></span>
                                         </p>
-                                        <p class="text-info">Price: <span class="text-dark"
-                                                v-text="lesson.price"></span>
+                                        <p class="text-info">Price: <span class="text-dark">$</span><span
+                                                class="text-dark" v-text="lesson.price"></span>
                                         </p>
                                         <p class="text-info">Spaces: <span
                                                 class="text-dark">{{lesson.spaces - cartCount(lesson)}}</span></p>
@@ -120,7 +120,7 @@
                         <div class="row">
                             <div class="col-md-8 offset-2">
                                 <table class="table mt-5">
-                                    <thead>
+                                    <thead class="thead-dark">
                                         <tr>
                                             <th scope="col">Class</th>
                                             <th scope="col">Location</th>
@@ -136,7 +136,7 @@
                                                 </p>
                                             </td>
                                             <td>{{lesson.location}}</td>
-                                            <td>{{lesson.price}}</td>
+                                            <td>${{lesson.price}}</td>
                                         </tr>
                                     </div>
                                 </table>
@@ -159,13 +159,13 @@
                         <div class="form-group">
 
                             <label>Full Name:</label>
-                            <input type="text" class="form-control" v-model="order.name">
+                            <input type="text" required class="form-control" v-model="order.name">
                             <br>
                             <label>Email:</label>
-                            <input type="email" class="form-control" v-model="order.email">
+                            <input type="email" required class="form-control" v-model="order.email">
                             <br>
                             <label>Mobile:</label>
-                            <input type="number" class="form-control" v-model="order.mobile">
+                            <input type="number" required class="form-control" v-model="order.mobile">
                             <br>
                         </div>
                     </form>
@@ -173,12 +173,14 @@
                     <label class="form-control" readonly>Name: {{order.name}}</label>
                     <label class="form-control" readonly>Email: {{order.email}}</label>
                     <label class="form-control" readonly>Mobile: {{order.mobile}}</label>
-                    <button v-on:click="submitForm" class="btn ">Place Order</button>
+                    <label class="form-control" readonly>Total: ${{total}}</label>
+                    <br>
+                    <button type="button" v-on:click="submitForm" class="btn btn-info float-right">Place Order</button>
                 </div>
                 <div class="col-md-6">
                     <h2 class="text-center">Cart</h2>
-                    
-                    <table class="table mt-3">
+                    <button v-on:click='showCheckout' type="button" class="btn btn-link float-right"> Edit Cart</button>
+                    <table class="table mt-3 table-dark">
                         <thead>
                             <tr>
                                 <th scope="col">Class</th>
@@ -189,15 +191,16 @@
                         <div>
                             <tr v-for="lesson in cart">
                                 <td>
-                                    <p class="text-dark"> {{lesson.subject}}
+                                    <p> {{lesson.subject}}
                                         Class
                                     </p>
                                 </td>
                                 <td>{{lesson.location}}</td>
-                                <td>{{lesson.price}}</td>
+                                <td>${{lesson.price}}</td>
                             </tr>
                         </div>
                     </table>
+
                 </div>
 
             </div>
@@ -234,7 +237,7 @@
                     this.showProduct = this.showProduct ? false : true;
                 },
                 submitForm() {
-                    alert('Order submitted!')
+                    alert('Order submitted!');
                 },
 
                 canAddToCart(lesson) {
@@ -264,6 +267,13 @@
                         return 0;
                     }
                     return productsArray.sort(compare);
+                },
+                total() {
+                    var total = 0;
+                    for (var i = 0; i < this.cart.length; i++) {
+                        total = total + this.cart[i].price;
+                    }
+                    return total;
                 }
             }
         });
