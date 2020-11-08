@@ -22,7 +22,7 @@
                 <div class="col-md-2">
                     <p class="font-weight-bold">Category</p>
                     <div class="form-check  ">
-                        <input class="form-check-input " type="radio" value="option1" name="categoryRadio">
+                        <input class="form-check-input " type="radio" value="option1" name="categoryRadio" checked>
                         <label class="form-check-label">
                             Subject
                         </label>
@@ -40,7 +40,8 @@
                         </label>
                     </div>
                     <div class="form-check  mt-1">
-                        <input class="form-check-input" type="radio" value="option1" name="categoryRadio">
+                        <input class="form-check-input" type="radio" value="option1" name="categoryRadio"
+                            @click="sorted('spaces')">
                         <label class="form-check-label">
                             Spaces
                         </label>
@@ -54,7 +55,7 @@
                         </label>
                     </div>
                     <div class="form-check ">
-                        <input class="form-check-input" type="radio" value="option1" name="orderRadio">
+                        <input class="form-check-input" type="radio" value="option1" name="orderRadio" checked>
                         <label class="form-check-label">
                             Descending
                         </label>
@@ -64,6 +65,7 @@
 
                     <div class="row">
                         <div v-for="lesson in lesson">
+                            <!-- <div v-for="lesson in sorted"> -->
                             <div class="col-md-12 mt-5">
                                 <main class="ml-4">
                                     <figure class="float-right">
@@ -100,13 +102,14 @@
                                         </span>
                                         <br><br>
                                         <div>
-                                            <span><i class="fas fa-star"></i> </span>
-                                            <span><i class="far fa-star"></i></span>
+                                            <span v-for='n in lesson.rating'><i class="fas fa-star"></i></span>
+                                            <span v-for='n in 5-lesson.rating'><i class="far fa-star"></i></span>
                                         </div>
                                     </div>
                                 </main>
 
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -122,21 +125,22 @@
                                 <table class="table mt-5">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th scope="col">Class</th>
+                                            <th scope="col">Subject</th>
                                             <th scope="col">Location</th>
                                             <th scope="col">Price</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <div>
                                         <tr v-for="lesson in cart">
                                             <td>
                                                 <p class="text-dark"> {{lesson.subject}}
-                                                    Class <i v-on:click="removeCart(lesson)"
-                                                        class=" mr-auto fas fa-trash"></i>
+                                                    </i>
                                                 </p>
                                             </td>
                                             <td>{{lesson.location}}</td>
                                             <td>${{lesson.price}}</td>
+                                            <td><i v-on:click="removeCart(lesson)" class=" mr-auto fas fa-trash"></td>
                                         </tr>
                                     </div>
                                 </table>
@@ -159,13 +163,14 @@
                         <div class="form-group">
 
                             <label>Full Name:</label>
-                            <input type="text" required class="form-control" v-model="order.name">
+                            <input type="text" pattern="[^0-9]+" required class="form-control" v-model.text="order.name"
+                                id="inputName">
                             <br>
                             <label>Email:</label>
-                            <input type="email" required class="form-control" v-model="order.email">
+                            <input type="email" required class="form-control" v-model="order.email" id="inputEmail">
                             <br>
                             <label>Mobile:</label>
-                            <input type="number" required class="form-control" v-model="order.mobile">
+                            <input type="number" required class="form-control" v-model="order.mobile" id="inputMobile">
                             <br>
                         </div>
                     </form>
@@ -175,7 +180,8 @@
                     <label class="form-control" readonly>Mobile: {{order.mobile}}</label>
                     <label class="form-control" readonly>Total: ${{total}}</label>
                     <br>
-                    <button type="button" v-on:click="submitForm" class="btn btn-info float-right">Place Order</button>
+                    <button type="button" v-on:click="submitForm(order)" class="btn btn-info float-right">Place
+                        Order</button>
                 </div>
                 <div class="col-md-6">
                     <h2 class="text-center">Cart</h2>
@@ -183,7 +189,7 @@
                     <table class="table mt-3 table-dark">
                         <thead>
                             <tr>
-                                <th scope="col">Class</th>
+                                <th scope="col">Subject</th>
                                 <th scope="col">Location</th>
                                 <th scope="col">Price</th>
                             </tr>
@@ -192,7 +198,6 @@
                             <tr v-for="lesson in cart">
                                 <td>
                                     <p> {{lesson.subject}}
-                                        Class
                                     </p>
                                 </td>
                                 <td>{{lesson.location}}</td>
@@ -212,7 +217,7 @@
         var webstore = new Vue({
             el: '#app',
             data: {
-                sitename: 'Lesson Booking Service',
+                sitename: 'After School Classes and Activities',
                 lesson: lesson
                 ,
                 order:
@@ -236,8 +241,28 @@
                 showCheckout() {
                     this.showProduct = this.showProduct ? false : true;
                 },
-                submitForm() {
-                    alert('Order submitted!');
+                submitForm(order) {
+                    var name = document.getElementById('inputName').value
+
+                    if (order.name === "") {
+                        alert("Enter Name")
+                    } else {
+                        if (typeof name === 'string' || name instanceof string) {
+                            if (order.email === "") {
+                                alert('Enter Email')
+                            } else {
+                                if (order.mobile === "") {
+                                    alert("Enter Mobile")
+                                }
+                                else {
+                                    alert("Order Submitted")
+                                }
+                            }
+
+                        } else {
+                            alert("Enter text only for name")
+                        }
+                    }
                 },
 
                 canAddToCart(lesson) {
@@ -252,28 +277,33 @@
                     } return count;
                 },
 
+
             },
             computed: {
                 cartItemCount: function () {
                     return this.cart.length;
                 },
-                sortedProducts() {
-                    let productsArray = this.product.slice(0);
-                    function compare(a, b) {
-                        if (a.price > b.price)
-                            return 1;
-                        if (a.price < b.price)
-                            return -1;
-                        return 0;
-                    }
-                    return productsArray.sort(compare);
-                },
+
                 total() {
                     var total = 0;
                     for (var i = 0; i < this.cart.length; i++) {
                         total = total + this.cart[i].price;
                     }
                     return total;
+                },
+                sorted() {
+                    let lessonArray = this.lesson.slice(0);
+
+                    function compare(a, b) {
+                        if (a.subject > b.subject)
+                            return 1;
+                        if (a.subject < b.subject)
+                            return -1;
+                        return 0;
+
+                    }
+                    return lessonArray.sort(compare);
+
                 }
             }
         });
